@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Usuario {
 	private String nombre;
@@ -40,6 +41,12 @@ public class Usuario {
 		this.nombre = nombre;
 		this.email = email;
 		this.fechaNacim = fechaNacim;
+	}
+	
+	public int obtenerEdad() {
+		Period p = Period.between(this.fechaNacim, LocalDate.now());
+		int anios = p.getYears();
+		return anios;
 	}
 	
 	
