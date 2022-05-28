@@ -57,7 +57,7 @@ public class CandidatoController {
 	}
 	
 	@GetMapping("/editar/{codigo}")
-	public ModelAndView getEditarCandidatoPage(@PathVariable(value="candidato")int codigo) {
+	public ModelAndView getEditarCandidatoPage(@PathVariable(value="codigo")int codigo) {
 		ModelAndView mav = new ModelAndView("edicion_candidato");
 		Optional<Candidato> candidato = listacandidatos.getCandidatos().stream().filter(a -> a.getCodigo() == codigo).findFirst();
 		mav.addObject("candidato", candidato);

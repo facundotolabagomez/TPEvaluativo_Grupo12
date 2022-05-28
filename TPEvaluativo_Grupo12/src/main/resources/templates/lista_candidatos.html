@@ -32,7 +32,7 @@
 							<td th:text="${candidato.nombre}"></td>
 							<td th:text="${candidato.genero}"></td>
 							<td th:text="${candidato.descripcion}"></td>
-							<td th:text="${candidato.votos}"></td>
+							<td th:text="${candidato.cantVotos}"></td>
 							<td>
 							<a th:href="@{/candidato/editar/}+${candidato.codigo}" id="editarCandidato" class="btn btn-warning">Editar</a>
 							<a th:href="@{/candidato/eliminar/}+${candidato}" id="eliminarCandidato" class="btn btn-danger">Eliminar</a>
