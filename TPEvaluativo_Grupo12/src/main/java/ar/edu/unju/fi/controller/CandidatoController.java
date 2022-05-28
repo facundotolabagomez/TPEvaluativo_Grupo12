@@ -64,6 +64,20 @@ public class CandidatoController {
 		return mav;
 	}
 	
+	
+	@GetMapping("/eliminar/{codigo}")
+	public ModelAndView getEliminarCandidatoPage(@PathVariable(value="codigo")int codigo) {
+		ModelAndView mav = new ModelAndView("edicion_candidato");
+		for(Candidato candid : listacandidatos.getCandidatos()) {
+			if(candid.getCodigo() == codigo) {
+				
+			}
+		}
+		return mav;
+	}
+	
+	
+	
 	@PostMapping("/modificar")
 	public ModelAndView editarDatosCandidato(@Validated @ModelAttribute("candidato") Candidato candidato, BindingResult bindingResult ) {
 		if(bindingResult.hasErrors()) {
@@ -81,7 +95,9 @@ public class CandidatoController {
 				candid.setDescripcion(candidato.getDescripcion());
 				candid.setCantVotos(candidato.getCantVotos());
 			}
+			mav.addObject("candidato", candid);
 		}
+		
 		return mav;
 		
 	}
