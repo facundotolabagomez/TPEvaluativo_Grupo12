@@ -9,7 +9,7 @@
 	
 	<body>
 		<header th:replace="/layouts/header :: header"></header>
-		<div class="container col-4">
+		<div class="container col-4" id="formcandidato">
 			<br>
 			<p class="h4">Creación de Candidato</p>
 			<br>
@@ -36,7 +36,7 @@
 					<div class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
 				</div>
 				<div class="mb-3">
-					<label for="votosId" class="form-label">VOTOS</label> 
+					<label for="votosId" class="form-label" hidden="hidden">VOTOS</label> 
 					<input th:field="*{cantVotos}" type="hidden" class="form-control" id="votosId" value=0>
 				</div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -44,6 +44,7 @@
 					 <a th:href="@{/mtvlatin/inicio}" id="cancel" class="btn btn-secondary">Cancelar</a>
 	  				
 				</div>
+				<br>
 			</form>
 		</div>
 		<br><br>
