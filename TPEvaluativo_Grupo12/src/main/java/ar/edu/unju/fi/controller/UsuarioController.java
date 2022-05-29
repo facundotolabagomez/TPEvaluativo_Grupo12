@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 //import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,37 +27,50 @@ public class UsuarioController {
 		return "lista_usuarios"; 
 	}
 	
+	
+	
 	@GetMapping("/registro")
 	public String getRegistroPage(Model model) {
 		model.addAttribute("usuario", new Usuario());
-		return "registro_usuario";
+		return "verificacion_usuario";
 	}
 	
 	
 	
 	@GetMapping("/verif")
-	public ModelAndView verificarDatosUsuario(@ModelAttribute("usuario") Usuario usuario, BindingResult bindingResult ) {
+	public ModelAndView verificarDatosUsuario(@Validated @ModelAttribute("usuario") Usuario usuario, BindingResult bindingResult ) {
 		
-		LOGGER.info("llegamos aqui");
 		boolean band = false;
 		String valor = "";
-		ModelAndView mav = new ModelAndView(valor);
-		LOGGER.info("Valor--> "+valor);
+		ModelAndView mav = new ModelAndView("");
 		
-		for(Usuario user : listausuarios.getUsuarios()) {
-			if(user.getEmail() == usuario.getEmail()) {
-				valor = "votacion";
-				mav.addObject("usuario", user);
-				band=true;
+		//for(Usuario user : listausuarios.getUsuarios()) {
+		for(int i=0;i<listausuarios.getUsuarios().size();i++) {
+			//if(user.getEmail().equals(usuario.getEmail())) {
+			if(listausuarios.getUsuarios().get(i).getEmail().equals(usuario.getEmail())) {
 				LOGGER.info("usuario aceptado");
+				int cantidadvotos = listausuarios.getUsuarios().get(i).getVotosuser();
+				if (cantidadvotos<3) {
+					listausuarios.getUsuarios().get(i).setVotosuser(cantidadvotos+1);
+					LOGGER.info(listausuarios.getUsuarios().get(i).getEmail()+" votó "+listausuarios.getUsuarios().get(i).getVotosuser()+" veces");
+					valor="redirect:/votacion/lista";
+					mav.addObject("usuario", usuario);
+					band=true;
+				}else {
+					valor="redirect:/votacion/fail";
+				}
 			}
 		}
 		if (!band) {
-			valor = "registro_usuario";
-			mav.addObject("usuario", usuario);
+			valor = "redirect:/votacion/noexiste";
 			LOGGER.info("usuario denegado");
 		}
-		return mav;
+		
+		//primero revisa si existe el usuario
+		//revisa que no tengas mas de 3 votos
+		//agregar un voto y redireccionar a lista votacion
+		ModelAndView mavVerif = new ModelAndView(valor);
+		return mavVerif;
 	}
 	
 }
