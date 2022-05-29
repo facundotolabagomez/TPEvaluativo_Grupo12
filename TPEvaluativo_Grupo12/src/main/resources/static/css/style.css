@@ -19,7 +19,6 @@ header {
 
 #logo{
 	float: center; 
-		
 }
 
 #banner{
@@ -43,10 +42,13 @@ header {
 
 body{
 	background-color: grey;
-	/* background-image: url("../../../images/pagina background.png");  */
 	margin: 0;
 	margin-bottom: 60px;
 }
+/* div.container{
+	background-image: url("../../../images/pagina background.png");
+}  */
+
 html {
   min-height: 100%;
   position: relative;

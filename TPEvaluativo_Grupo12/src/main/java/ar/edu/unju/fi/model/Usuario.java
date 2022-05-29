@@ -7,6 +7,7 @@ public class Usuario {
 	private String nombre;
 	private String email;
 	private LocalDate fechaNacim;
+	private int votosuser;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -36,17 +37,26 @@ public class Usuario {
 		this.fechaNacim = fechaNacim;
 	}
 
-	public Usuario(String nombre, String email, LocalDate fechaNacim) {
+	public Usuario(String nombre, String email, LocalDate fechaNacim, int votosuser) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
 		this.fechaNacim = fechaNacim;
+		this.votosuser = votosuser;
 	}
-	
+
 	public int obtenerEdad() {
 		Period p = Period.between(this.fechaNacim, LocalDate.now());
 		int anios = p.getYears();
 		return anios;
+	}
+
+	public int getVotosuser() {
+		return votosuser;
+	}
+
+	public void setVotosuser(int votosuser) {
+		this.votosuser = votosuser;
 	}
 	
 	

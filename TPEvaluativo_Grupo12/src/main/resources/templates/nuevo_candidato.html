@@ -39,9 +39,13 @@
 					<label for="votosId" class="form-label" hidden="hidden">VOTOS</label> 
 					<input th:field="*{cantVotos}" type="hidden" class="form-control" id="votosId" value=0>
 				</div>
+				<div class="mb-3">
+					<label for="porcentajeId" class="form-label" hidden="hidden">PORCENTAJE</label> 
+					<input th:field="*{porcentaje}" type="hidden" class="form-control" id="porcentajeId" value=0>
+				</div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" type="submit">Enviar</button>
-					 <a th:href="@{/mtvlatin/inicio}" id="cancel" class="btn btn-secondary">Cancelar</a>
+					 <a th:href="@{/mtvlatin/home}" id="cancel" class="btn btn-secondary">Cancelar</a>
 	  				
 				</div>
 				<br>
