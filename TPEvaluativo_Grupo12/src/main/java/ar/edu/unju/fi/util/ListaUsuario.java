@@ -10,8 +10,8 @@ public class ListaUsuario {
 	
 	public ListaUsuario() {
 		usuarios = new ArrayList<Usuario>();
-		usuarios.add(new Usuario("Facu","facu@gmail.com",LocalDate.of(1992, 03, 12)));
-		usuarios.add(new Usuario("Elio","elio@gmail.com",LocalDate.of(1991, 01, 01)));
+		usuarios.add(new Usuario("Facu","facu@gmail.com",LocalDate.of(1992, 03, 12),0));
+		usuarios.add(new Usuario("Elio","elio@gmail.com",LocalDate.of(1991, 01, 01),0));
 	}
 	
 	public ArrayList<Usuario> getUsuarios() {

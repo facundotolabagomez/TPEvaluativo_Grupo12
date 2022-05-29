@@ -66,14 +66,17 @@ public class CandidatoController {
 	
 	
 	@GetMapping("/eliminar/{codigo}")
-	public ModelAndView getEliminarCandidatoPage(@PathVariable(value="codigo")int codigo) {
-		ModelAndView mav = new ModelAndView("edicion_candidato");
-		for(Candidato candid : listacandidatos.getCandidatos()) {
-			if(candid.getCodigo() == codigo) {
-				
+	public ModelAndView getEliminarCandidatoPage(@PathVariable(value = "codigo") int codigo) {
+		ModelAndView mavCandidato = new ModelAndView("lista_candidatos");
+		for (int i = listacandidatos.getCandidatos().size(); i > 0; i--) {
+			//if (can.getCodigo() == codigo) {
+			if (listacandidatos.getCandidatos().get(i-1).getCodigo() == codigo) {
+				LOGGER.info("Se elimino Candidato");
+				listacandidatos.getCandidatos().remove(i-1);
 			}
 		}
-		return mav;
+		mavCandidato.addObject("candidato", listacandidatos.getCandidatos());
+		return mavCandidato;
 	}
 	
 	
@@ -97,6 +100,7 @@ public class CandidatoController {
 			}
 			mav.addObject("candidato", candid);
 		}
+		mav.addObject("candidato", listacandidatos.getCandidatos());
 		
 		return mav;
 		
