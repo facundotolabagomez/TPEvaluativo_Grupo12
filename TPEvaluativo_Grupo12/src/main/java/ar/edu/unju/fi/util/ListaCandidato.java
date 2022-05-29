@@ -14,7 +14,7 @@ private ArrayList<Candidato> candidatos;
 		candidatos.add(new Candidato(2,"ACDC","Rock","Banda Popular de Rock",3,0));
 		candidatos.add(new Candidato(3,"Guns n Roses","Rock","Banda Problematica de Rock",1,0));
 		candidatos.add(new Candidato(4,"La Mona","Cuarteto","Icono del cuarteto",1,0));
-		candidatos.add(new Candidato(5,"Ninguno","-","No me gusta ninguno",3,0));
+		candidatos.add(new Candidato(5,"Ninguno","-","No me gusta ninguno",15,0));
 	}
 
 	public ArrayList<Candidato> getCandidatos() {

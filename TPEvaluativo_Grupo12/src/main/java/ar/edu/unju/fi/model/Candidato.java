@@ -6,7 +6,7 @@ public class Candidato {
 	private String genero;
 	private String descripcion;
 	private int cantVotos;
-	private int porcentaje;
+	private double porcentaje;
 	
 	public Candidato() {
 		// TODO Auto-generated constructor stub
@@ -52,7 +52,7 @@ public class Candidato {
 		this.cantVotos = cantVotos;
 	}
 
-	public Candidato(int codigo, String nombre, String genero, String descripcion, int cantVotos, int porcentaje) {
+	public Candidato(int codigo, String nombre, String genero, String descripcion, int cantVotos, double porcentaje) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -62,11 +62,11 @@ public class Candidato {
 		this.porcentaje = porcentaje;
 	}
 
-	public int getPorcentaje() {
+	public double getPorcentaje() {
 		return porcentaje;
 	}
 
-	public void setPorcentaje(int porcentaje) {
+	public void setPorcentaje(double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
 	
