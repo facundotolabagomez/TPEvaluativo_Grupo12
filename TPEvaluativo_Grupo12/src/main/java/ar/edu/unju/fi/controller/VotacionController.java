@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.model.Candidato;
-import ar.edu.unju.fi.model.Usuario;
+
 import ar.edu.unju.fi.util.ListaCandidato;
 
 @Controller
