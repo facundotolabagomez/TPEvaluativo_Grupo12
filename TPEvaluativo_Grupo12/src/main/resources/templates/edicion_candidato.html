@@ -35,6 +35,10 @@
 					<input th:field="*{descripcion}" type="text" class="form-control" id="descripcionId" >
 					<div class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
 				</div>
+				<div class="mb-3">
+					<label for="cantVotosId" class="form-label" hidden="hidden">VOTOS</label> 
+					<input th:field="*{cantVotos}" type="hidden" class="form-control" id="cantVotosId"  >
+				</div>
 				
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" type="submit">Editar</button>
