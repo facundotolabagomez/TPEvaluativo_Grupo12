@@ -37,7 +37,7 @@ public class CandidatoController {
 		if (bindingResult.hasErrors()) {
 			LOGGER.error("No se cumplen las reglas de validación");
 
-			ModelAndView mav = new ModelAndView("nuevo_candidato");
+			ModelAndView mav = new ModelAndView("/candidato/editar/{codigo}") ;
 			mav.addObject("candidato", candidato);
 			return mav;
 			

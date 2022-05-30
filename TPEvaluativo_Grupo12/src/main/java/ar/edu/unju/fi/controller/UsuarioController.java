@@ -39,7 +39,13 @@ public class UsuarioController {
 	
 	@GetMapping("/verif")
 	public ModelAndView verificarDatosUsuario(@Validated @ModelAttribute("usuario") Usuario usuario, BindingResult bindingResult ) {
-		
+		if (bindingResult.hasErrors()) {
+			LOGGER.error("No se cumplen las reglas de validación");
+			
+			ModelAndView mav = new ModelAndView("verificacion_usuario");
+			mav.addObject("usuario", usuario);
+			return mav;
+		}
 		boolean band = false;
 		boolean bandMasDeTres=false;
 		String valor = "";
@@ -75,4 +81,5 @@ public class UsuarioController {
 		return mavVerif;
 	}
 	
-}
+	}
+
