@@ -1,9 +1,11 @@
 package ar.edu.unju.fi.controller;
 
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,19 +18,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Candidato;
-import ar.edu.unju.fi.util.ListaCandidato;
+import ar.edu.unju.fi.service.ICandidatoService;
+//import ar.edu.unju.fi.util.ListaCandidato;
 
 
 @Controller
 @RequestMapping("/candidato")
 public class CandidatoController {
 	
-	ListaCandidato listacandidatos = new ListaCandidato();
+	@Autowired
+	@Qualifier("AlumnoServiceImpLista")
+	private ICandidatoService candidatoService;
+	
+	//ListaCandidato listacandidatos = new ListaCandidato();
 	private static final Log LOGGER = LogFactory.getLog(CandidatoController.class);
 	
 	@GetMapping("/nuevo")
 	public String getFormNuevoCandidatoPage(Model model) {
-		model.addAttribute("candidato", new Candidato());
+		model.addAttribute("candidato", candidatoService.getCandidato());
 		return "nuevo_candidato";
 	}
 	
@@ -43,43 +50,26 @@ public class CandidatoController {
 			
 		}
 		ModelAndView mavCandidato = new ModelAndView("lista_candidatos");
-		if (listacandidatos.getCandidatos().add(candidato)) {
+		if (candidatoService.guardarCandidato(candidato)) {
 			LOGGER.info("Se agregó Candidato");
 		}
-		mavCandidato.addObject("candidato", listacandidatos.getCandidatos());
+		mavCandidato.addObject("candidato", candidatoService.getListaCandidato().getCandidatos());
 		return mavCandidato; 
 	}
 	
 	@GetMapping("/listaCandidatos")
 	public String getListaCandidatosPage(Model model) {
-		model.addAttribute("candidato", listacandidatos.getCandidatos());
+		model.addAttribute("candidato", candidatoService.getListaCandidato().getCandidatos());
 		return "lista_candidatos";
 	}
 	
 	@GetMapping("/editar/{codigo}")
 	public ModelAndView getEditarCandidatoPage(@PathVariable(value="codigo")int codigo) {
 		ModelAndView mav = new ModelAndView("edicion_candidato");
-		Optional<Candidato> candidato = listacandidatos.getCandidatos().stream().filter(a -> a.getCodigo() == codigo).findFirst();
+		Candidato candidato = candidatoService.buscarCandidato(codigo);
 		mav.addObject("candidato", candidato);
 		return mav;
 	}
-	
-	
-	@GetMapping("/eliminar/{codigo}")
-	public ModelAndView getEliminarCandidatoPage(@PathVariable(value = "codigo") int codigo) {
-		ModelAndView mavCandidato = new ModelAndView("lista_candidatos");
-		for (int i = listacandidatos.getCandidatos().size(); i > 0; i--) {
-			//if (can.getCodigo() == codigo) {
-			if (listacandidatos.getCandidatos().get(i-1).getCodigo() == codigo) {
-				LOGGER.info("Se elimino Candidato");
-				listacandidatos.getCandidatos().remove(i-1);
-			}
-		}
-		mavCandidato.addObject("candidato", listacandidatos.getCandidatos());
-		return mavCandidato;
-	}
-	
-	
 	
 	@PostMapping("/modificar")
 	public ModelAndView editarDatosCandidato(@Validated @ModelAttribute("candidato") Candidato candidato, BindingResult bindingResult ) {
@@ -89,21 +79,19 @@ public class CandidatoController {
 			mav.addObject("candidato", candidato);
 			return mav;
 		}
-		
-		ModelAndView mav = new ModelAndView("lista_candidatos");
-		for(Candidato candid : listacandidatos.getCandidatos()) {
-			if(candid.getCodigo() == candidato.getCodigo()) {
-				candid.setNombre(candidato.getNombre());
-				candid.setGenero(candidato.getGenero());
-				candid.setDescripcion(candidato.getDescripcion());
-				candid.setCantVotos(candidato.getCantVotos());
-			}
-			mav.addObject("candidato", candid);
-		}
-		mav.addObject("candidato", listacandidatos.getCandidatos());
-		
+		ModelAndView mav = new ModelAndView("redirect:/candidato/listaCandidatos");
+		candidatoService.modificarCandidato(candidato);
+		//mav.addObject("candidato", candidatoService.getListaCandidato().getCandidatos());
 		return mav;
-		
+	}
+	
+	@GetMapping("/eliminar/{codigo}")
+	public ModelAndView getEliminarCandidatoPage(@PathVariable(value = "codigo") int codigo) {
+		ModelAndView mavCandidato = new ModelAndView("redirect:/candidato/listaCandidatos");
+		candidatoService.eliminarCandidato(codigo);
+		LOGGER.info("Se elimino Candidato");
+		//mav.addObject("candidato", candidatoService.getListaCandidato().getCandidatos());
+		return mavCandidato;
 	}
 	
 	
