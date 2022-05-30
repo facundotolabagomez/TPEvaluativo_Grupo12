@@ -1,12 +1,25 @@
 package ar.edu.unju.fi.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class Candidato {
+	@Min(value=1, message="El valor mínimo es 1") 
+	@Max(value=9999,message="El valor máximo permitido es 9999")
 	private int codigo;
+	@NotNull (message = "Debe completar el Nombre")
+	@Size(min=3, max=20)
 	private String nombre;
+	@NotNull (message = "Debe completar el Genero")
+	@Size(min=3, max=10)
 	private String genero;
+	@NotNull (message = "Debe completar la Descripcion")
+	@Size(min=3, max=25)
 	private String descripcion;
 	private int cantVotos;
 	private double porcentaje;
