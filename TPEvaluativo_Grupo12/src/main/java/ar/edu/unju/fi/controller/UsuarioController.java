@@ -41,6 +41,7 @@ public class UsuarioController {
 	public ModelAndView verificarDatosUsuario(@Validated @ModelAttribute("usuario") Usuario usuario, BindingResult bindingResult ) {
 		
 		boolean band = false;
+		boolean bandMasDeTres=false;
 		String valor = "";
 		ModelAndView mav = new ModelAndView("");
 		
@@ -57,11 +58,12 @@ public class UsuarioController {
 					mav.addObject("usuario", usuario);
 					band=true;
 				}else {
-					valor="redirect:/votacion/fail";
+					bandMasDeTres=true;
+					valor="redirect:/votacion/fail";				
 				}
 			}
 		}
-		if (!band) {
+		if (!band && !bandMasDeTres) {
 			valor = "redirect:/votacion/noexiste";
 			LOGGER.info("usuario denegado");
 		}
