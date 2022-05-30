@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" ></link> 
+<link type="text/css" rel="stylesheet" href="../../../css/style.css" ></link>
+<title>HOME</title>
+</head>
+<body>
+	<header th:replace="/layouts/header::header"></header>
+	<div id="b-imagen" >
+		<div class="container">
+			<div class="row">
+				<section class="col-md-12" style="margin: auto" ><br>
+					<header style="background-color:green; margin-top: 1.4%; border-radius: 10px;"><h3 style="background-color:green; margin-top: 1.4%; border-radius: 10px;">Gracias por Votar!</h3></header>
+												
+						<div class="botonhome">
+							<a th:href="@{/mtvlatin/home}" id="botonhome" class="btn btn-primary">Home</a><br><br>
+							<!-- <button type="button" class="btn btn-primary" >Vota tu Favorito!</button> -->
+						</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="/layouts/footer::footer"></footer>
+	
+	<script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>

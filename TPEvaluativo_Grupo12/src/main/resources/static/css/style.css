@@ -24,6 +24,11 @@ header {
 #banner{
 	float: center;
 }
+.botonhome{
+ align-items: center;
+ justify-content: center;
+ margin-left:45%;
+}
 
 #listausuarios{
 	background-color: grey;
@@ -52,5 +57,12 @@ body{
 html {
   min-height: 100%;
   position: relative;
+}
+
+#b-imagen{
+	background-image: url("../../../images/pagina background.png");
+	height:100%;
+	margin-top:10px;
+	
 }
 
