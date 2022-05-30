@@ -10,5 +10,8 @@ public interface ICandidatoService {
 	public void eliminarCandidato(int codigo);
 	public ListaCandidato getListaCandidato();
 	public Candidato buscarCandidato(int codigo);
+	public ListaCandidato obtenerPorcentajes();
+	public ListaCandidato mostrarVotacion();
+	public Candidato votar(int codigo);
 	
 }

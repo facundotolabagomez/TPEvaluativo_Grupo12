@@ -64,4 +64,53 @@ public class CandidatoServiceImp implements ICandidatoService {
 		return candidato.get();
 	}
 
+	@Override
+	public ListaCandidato obtenerPorcentajes() {
+		// TODO Auto-generated method stub
+		int totalvotos=0;
+		double porcentaje=0;
+		for(Candidato candid : listaCandidato.getCandidatos()) {
+			totalvotos=totalvotos+candid.getCantVotos();
+		}
+		for(int i=0;i<listaCandidato.getCandidatos().size();i++) {
+			int votoindividual = listaCandidato.getCandidatos().get(i).getCantVotos();
+			porcentaje=((100.0*votoindividual)/totalvotos);
+			System.out.println(i+"--"+porcentaje);
+			listaCandidato.getCandidatos().get(i).setPorcentaje(porcentaje);
+			
+		}
+		return listaCandidato;
+	}
+
+	@Override
+	public ListaCandidato mostrarVotacion() {
+		// TODO Auto-generated method stub
+		int totalvotos=0;
+		double porcentaje=0;
+		for(Candidato candid : listaCandidato.getCandidatos()) {
+			totalvotos=totalvotos+candid.getCantVotos();
+			System.out.println(totalvotos);
+		}
+		for(int i=0;i<listaCandidato.getCandidatos().size();i++) {
+			int votoindividual = listaCandidato.getCandidatos().get(i).getCantVotos();
+			porcentaje=((100.0*votoindividual)/totalvotos);
+			System.out.println(i+"--"+porcentaje);
+			listaCandidato.getCandidatos().get(i).setPorcentaje(porcentaje);
+			
+		}
+		return listaCandidato;
+	}
+
+	@Override
+	public Candidato votar(int codigo) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<listaCandidato.getCandidatos().size();i++) {
+			if(listaCandidato.getCandidatos().get(i).getCodigo() == codigo) {
+				int cantvotos = listaCandidato.getCandidatos().get(i).getCantVotos();
+				listaCandidato.getCandidatos().get(i).setCantVotos(cantvotos+1);
+			}
+		}
+		return null;
+	}
+
 }

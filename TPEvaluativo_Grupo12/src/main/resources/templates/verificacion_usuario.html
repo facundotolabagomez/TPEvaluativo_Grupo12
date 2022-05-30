@@ -25,6 +25,11 @@
 					<input  th:field="*{email}" type="email" class="form-control" id="emailId" placeholder="Ingrese su email">
 					<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 				</div>
+				<div class="mb-3">
+					<label for="fechaNacimId" class="form-label" hidden="hidden">FECHA DE NAC</label> 
+					<input  th:field="*{fechaNacim}" type="hidden" class="form-control" id="fechaNacimId" placeholder="Fecha de n">
+					<div class="text-danger" th:if="${#fields.hasErrors('fechaNacim')}" th:errors="*{fechaNacim}"></div>
+				</div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" type="submit">Entrar</button>
 					 <a th:href="@{/mtvlatin/home}" id="cancel" class="btn btn-secondary">Cancelar</a>
